@@ -87,3 +87,17 @@ plugins: [
 ---
 
 1. 编写vue入口文件index.js
+```js
+import Vue from "vue";
+
+new Vue({
+    data(){
+        return{
+            text:"yangxya-vue-demo",
+        }
+    },
+    el:"#app",
+    render:(c)=>c("h2","1223212321312123123")
+})
+```
+2. 执行npm run dev，浏览器自动启动
