@@ -1,4 +1,5 @@
 
+# webpack、vue基本搭建
 > 参考：         
 [从零开始基于webpack4 babel8搭建vue开发环境](https://www.jianshu.com/p/2a8e309740be)
 
@@ -101,3 +102,40 @@ new Vue({
 })
 ```
 2. 执行npm run dev，浏览器自动启动
+
+# 进-丰富vue的常用功能
+参考：
+[从零开始基于webpack4 babel8搭建vue开发环境（二）](https://www.jianshu.com/p/5bdf698c1705)
+
+1. 当我们在项目入口文件引入vue时，默认引入的是runtime only版本，不包含compiler，（也就是把templete编译成render函数），所以我们需要通过resolve的配置，修改一下默认引入的vue 文件
+在`entry.js`中增加：
+```js
+    resolve:{
+        alias:{
+            'vue':"vue/dist/vue.esm.js"
+        }
+    },
+```
+2. 组件化的思想在vue中是一个重点，并且vue的组件支持templete stytle script分开的写法，让我们的样式模版和数据分离的很清晰，如果想提供此功能就需要使用vue-loader
+   
+   在loader中增加vue-loader的配置，vue-loader上节我们已经安装，另外，vue-loader15+的安装，需要额外引入一个插件，添加内容如下
+```js
+const VueLoaderPlugin = require('vue-loader/lib/plugin') //加在文件头部引入
+
+//加在rules的配置中
+  module:{
+    rules:[
+      {
+        test: /\.vue$/,
+        use:["vue-loader"]
+      }
+    ],
+  },
+
+new VueLoaderPlugin(), //加在插件的配置中
+```
+3. 还需要安装vue-template-compiler包(将template)转化为render函数和vue-style-loader包(将style插入到dom中的style标签)和css-loader包(处理css类依赖文件，包括template中的style的内容)
+   
+```npm
+npm install vue-template-compiler@^2.0.0 vue-style-loader@^4.0.0 css-loader@^2.0.0 --save-dev
+```
