@@ -11,16 +11,23 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
+      '/api': {
         target: 'http://425.0.100.100:8888/',//设置你调用的接口域名和端口号 别忘了加http
         changeOrigin: true,//如果需要跨域
         pathRewrite: {
           '^/api': '/'
-                //这里理解成用的地址，
-                // 后面组件中我们掉接口时直接用api代替 比如我要调
-                // 用'http://425.0.100.100:8888/user/add'，直接写‘/api/user/add’即可
+          //这里理解成用的地址，
+          // 后面组件中我们掉接口时直接用api代替 比如我要调
+          // 用'http://425.0.100.100:8888/user/add'，直接写‘/api/user/add’即可
         }
-      }
+      },
+      '/yxy': {
+        target: 'http://localhost:10001/',
+        changeOrigin: true,//如果需要跨域
+        pathRewrite: {
+          '^/yxy': '/'
+        }
+      },
     },
 
     // Various Dev Server settings
@@ -31,7 +38,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
@@ -55,12 +62,21 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-
-    /**
+    proxyTable: { 
+      '/yxy': {
+        target: 'http://192.168.3.126:10001/',
+        changeOrigin: true,//如果需要跨域
+        pathRewrite: {
+          '^/yxy': '/'
+        }
+      },
+    },
+    /* 
      * Source Maps
+     * true代表打包环境是开发环境，可以进行调试；false表示生产环境，正式上线的
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

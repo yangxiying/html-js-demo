@@ -2,6 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-link to="/hello">Go to hello-test</router-link>
+    <router-link to="/pdf">Go to pdf-test</router-link>
     <router-link to="/">Go to home</router-link>
     <!-- 路由视图 -->
     <router-view/>
