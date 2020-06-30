@@ -16,6 +16,13 @@ import axios from 'axios'
 Vue.prototype.$http= axios
 
 
+import ECharts from 'vue-echarts'
+// import 'echarts/lib/chart/line'
+Vue.component('v-chart', ECharts)
+
+
+// import VuePIXI from 'vue-pixi'
+// Vue.use(VuePIXI)
 
 Vue.config.productionTip = false
 

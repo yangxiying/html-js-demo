@@ -28,7 +28,7 @@
 
 <script>
 import pdf from 'vue-pdf';
-var loadingTask = pdf.createLoadingTask('/yxy/test/pdf2');
+// var loadingTask = pdf.createLoadingTask('/yxy/test/pdf2');
 export default {
   name: "AxiosDemo",
   components: {
