@@ -54,6 +54,12 @@
         },
         methods: {
             addNewTodo: function () {
+                let aaa = {"iss":"sss"}
+                if(aaa && aaa.iss){
+                         alert("true") 
+
+                }
+                alert( (aaa && aaa.iss) )
                 this.todos.push({
                     id: this.nextTodoId++,
                     title: this.newTodoText

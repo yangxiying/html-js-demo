@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <router-link to="/hello">Go to hello-test</router-link>
-    <!-- <router-link to="/pdf">Go to pdf-test</router-link> -->
+    <router-link to="/pdf">Go to pdf-test</router-link>
     <router-link to="/echarts1">Go to echarts1-test</router-link>
     <router-link to="/">Go to home</router-link>
     <p>

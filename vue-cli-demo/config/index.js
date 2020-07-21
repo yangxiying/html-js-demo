@@ -11,21 +11,28 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/api/': {
         target: 'http://425.0.100.100:8888/',//设置你调用的接口域名和端口号 别忘了加http
         changeOrigin: true,//如果需要跨域
         pathRewrite: {
-          '^/api': '/'
+          '^/api/': '/'
           //这里理解成用的地址，
           // 后面组件中我们掉接口时直接用api代替 比如我要调
           // 用'http://425.0.100.100:8888/user/add'，直接写‘/api/user/add’即可
         }
       },
-      '/yxy': {
+      '/yxy/': {
         target: 'http://localhost:10001/',
         changeOrigin: true,//如果需要跨域
         pathRewrite: {
           '^/yxy': '/'
+        }
+      },
+      '/yxypost/': {
+        target: 'http://localhost:8088/',
+        changeOrigin: true,//如果需要跨域
+        pathRewrite: {
+          '^/yxypost/': '/'
         }
       },
     },

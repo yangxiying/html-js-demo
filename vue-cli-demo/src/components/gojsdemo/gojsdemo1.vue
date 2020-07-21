@@ -6,14 +6,17 @@
       <el-button @click="init3">3</el-button>
       <el-button @click="init4">4</el-button>
       <el-button @click="init4_2">4-2</el-button>
-      <!-- <img src="./123.png"> -->
+      <!-- <img src="static/svg/map.svg"> -->
     </div>
     <!-- <div class="lean" ref="demo1111" v-show="show">wwww</div> -->
     <!-- <div style="width: 100%; display: flex; justify-content: space-between">
       <div ref="myPaletteDiv" style="width: 100px; margin-right: 2px; background-color: #282c34;"></div>
       <div ref="myDiagramDiv" style="flex-grow: 1; height: 750px; background-color: #282c34;"></div>
     </div>-->
-
+    <div>
+      <!-- commandHandler -->
+      <el-button @click="init4_fit1">++</el-button>
+    </div>
     <div style="width: 100%; display: flex; justify-content: space-between">
       <div
         ref="myPaletteDiv"
@@ -32,11 +35,14 @@ export default {
     return {
       diagram: null,
       diagram2: null,
-      show: true
+      show: true,
+      imgsrc:"static/svg/map.svg",
     };
   },
   methods: {
     load1() {
+      if (this.diagram) this.diagram.div = null;
+      if (this.diagram2) this.diagram2.div = null;
       this.diagram = GO(go.Diagram, this.$refs.myDiagramDiv, {
         //模型图的中心位置所在坐标
         initialContentAlignment: go.Spot.Center,
@@ -61,9 +67,7 @@ export default {
       });
     },
     init1() {
-      //   const GO = go.GraphObject.make;
-      //   this.diagram = GO(go.Diagram, this.$refs.demo1111);
-      //   this.diagram = GO(go.Diagram, this.$el);
+      this.load1();
 
       // the background image, a floor plan
       this.diagram.add(
@@ -105,7 +109,8 @@ export default {
       );
     },
     load2() {
-      this.diagram = null;
+      if (this.diagram) this.diagram.div = null;
+      if (this.diagram2) this.diagram2.div = null;
       this.diagram = GO(
         go.Diagram,
         this.$refs.demo1111, // must name or refer to the DIV HTML element
@@ -167,8 +172,9 @@ export default {
       });
     },
     init2() {
+      this.load2();
       // define the Node templates for regular nodes
-      this.diagram.div = null;
+
       this.diagram = GO(
         go.Diagram,
         this.$refs.myDiagramDiv, // must name or refer to the DIV HTML element
@@ -491,6 +497,8 @@ export default {
       );
     },
     init3() {
+      if (this.diagram) this.diagram.div = null;
+      if (this.diagram2) this.diagram2.div = null;
       this.diagram = GO(
         go.Diagram,
         this.$refs.myDiagramDiv, // create the Diagram for the HTML DIV element
@@ -607,21 +615,33 @@ export default {
         this.$refs.myDiagramDiv, // must name or refer to the DIV HTML element
         {
           //   "undoManager.isEnabled": true // enable undo & redo
+          scale: 1.0, //初始视图大小比例
+          minScale: 0.5, //最小视图的缩小比例
+          maxScale: 3, //最大视图的放大比例
+          "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom //鼠标滚轮事件
         }
       );
+
+
+let img1 = new Image(); // Image 构造器
+img1.src = this.imgsrc;
 
       this.diagram.add(
         GO(
           go.Part, // this Part is not bound to any model data
           {
-            width: 840,
-            height: 570,
+            // width: 840,
+            // height: 570,
             layerName: "Background",
             position: new go.Point(0, 0),
             selectable: false,
             pickable: false
           },
-          GO(go.Picture, { source: "static/123.png" })
+          GO(go.Picture, { 
+            desiredSize: new go.Size(580, 580),source: "static/123.png"
+          // width: 580, height: 580
+          
+           })
         )
       );
 
@@ -777,7 +797,7 @@ export default {
           go.Node,
           "Spot",
           {
-            contextMenu: nodeMenu,
+            contextMenu: nodeMenu
             // here the second argument is this object, which is this Node
             // doubleClick: function(e, node) {
             //   alert("doubleClick==node.data.key:::::::::::" + node.data.key);
@@ -801,21 +821,21 @@ export default {
           },
           {
             resizable: true, //是否可改变大小，默认false
-            resizeObjectName: "PANEL",
+            resizeObjectName: "PANEL"
             // resizeAdornmentTemplate: nodeResizeAdornmentTemplate
           },
           {
-            rotatable: true,//是否可旋转，默认false
+            rotatable: true, //是否可旋转，默认false
             rotateAdornmentTemplate: nodeRotateAdornmentTemplate
           },
-          new go.Binding("angle").makeTwoWay(),//偏移角度,旋转的角度
+          new go.Binding("angle").makeTwoWay(), //偏移角度,旋转的角度
           GO(
             go.Panel,
             "Auto",
             // { name: "PANEL", contextMenu: nodeMenu },
-            new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(
-              go.Size.stringify
-            ),
+            // new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(
+            //   go.Size.stringify
+            // ),
             GO(
               go.Shape,
               "Rectangle",
@@ -885,8 +905,8 @@ export default {
           model: new go.GraphLinksModel([
             {
               category: "11",
-              text: "方地"
-              //   figure: "Circle",
+              text: "方地",
+                figure: "Circle",
               //   fill: "#00AD5F"
             }
           ])
@@ -894,19 +914,19 @@ export default {
       );
 
       this.diagram.model = go.Model.fromJson(this.load4_3());
-    //   this.diagram.findNodeForKey("-1").data.fill = "lightgreen";
+      //   this.diagram.findNodeForKey("-1").data.fill = "lightgreen";
 
-
-      var node = this.diagram.model.findNodeDataForKey('-1');//首先拿到这个节点的对象
-    this.diagram.model.setDataProperty(node, 'fill', "lightgreen");//更改节点属性值
-
-
+      var node = this.diagram.model.findNodeDataForKey("-1"); //首先拿到这个节点的对象
+      this.diagram.model.setDataProperty(node, "fill", "lightgreen"); //更改节点属性值
+      this.diagram.model.setDataProperty(node, "text", "aaaaaaaaaaaaaaa"); //更改节点属性值
     },
     init4_2() {
+        //取得画布的数据，
       let model = this.diagram.model.toJson();
       console.info("model====" + model);
     },
     load4_3() {
+        //可以初始化加载时，直接加载已有数据 
       return {
         class: "GraphLinksModel",
         nodeDataArray: [
@@ -929,10 +949,16 @@ export default {
         ],
         linkDataArray: []
       };
+    },
+    init4_fit1() {
+      if (this.diagram) {
+        this.diagram.commandHandler.zoomToFit();
+      }
     }
   },
   mounted() {
-    // this.load1();
+    if (this.diagram) this.diagram.div = null;
+    if (this.diagram2) this.diagram2.div = null;
   }
 };
 </script>
