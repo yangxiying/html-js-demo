@@ -14,7 +14,7 @@ import axios from 'axios' // axios http请求库
 Vue.prototype.$http = axios
 
 
-require('./mockjs')
+// require('./mockjs')
 
 new Vue({
   router,

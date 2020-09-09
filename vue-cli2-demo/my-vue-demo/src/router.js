@@ -28,6 +28,7 @@ menus.forEach((item) => {
       path: cell.name,
       name: cell.name,
       meta: cell.meta,
+      params:{aa:'sdf'},
       component: () => import(`${menupath}`)
     })
   })

@@ -23,6 +23,7 @@
     },
     watch: {
       '$route' (to, from) {
+        debugger;
         console.log(to, from)
         log('to', to)
         log('from', from)
