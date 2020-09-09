@@ -33,14 +33,14 @@
 var g_aIframe = $("iframe");
 
 $(function () {
-    // ¼ì²é²å¼þÊÇ·ñÒÑ¾­°²×°¹ý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½×°ï¿½ï¿½
     var iRet = WebVideoCtrl.I_CheckPluginInstall();
     if (-1 == iRet) {
-        alert("Äú»¹Î´°²×°¹ý²å¼þ£¬Ë«»÷¿ª·¢°üÄ¿Â¼ÀïµÄWebComponentsKit.exe°²×°£¡");
+        alert("ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½WebComponentsKit.exeï¿½ï¿½×°ï¿½ï¿½");
         return;
     }
 
-    // ¹Ø±Õä¯ÀÀÆ÷
+    // ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     $(window).unload(function () {
         $.each(g_aIframe, function (i, oIframe) {
             getWebVideoCtrl(oIframe).I_Stop();
@@ -54,22 +54,22 @@ function iframeLoaded() {
 
     if (4 === iLoadedCount) {
         var oLiveView = {
-            iProtocol: 1,            // protocol 1£ºhttp, 2:https
+            iProtocol: 1,            // protocol 1ï¿½ï¿½http, 2:https
             szIP: "172.10.18.59",    // protocol ip
             szPort: "80",            // protocol port
             szUsername: "admin",     // device username
             szPassword: "12345678q", // device password
-            iStreamType: 2,          // stream 1£ºmain stream  2£ºsub-stream  3£ºthird stream  4£ºtranscode stream
+            iStreamType: 2,          // stream 1ï¿½ï¿½main stream  2ï¿½ï¿½sub-stream  3ï¿½ï¿½third stream  4ï¿½ï¿½transcode stream
             iChannelID: 1,           // channel no
             bZeroChannel: false      // zero channel
         };
 
         $.each(g_aIframe, function (i, oIframe) {
             var oWebVideoCtrl = getWebVideoCtrl(oIframe);
-            // µÇÂ¼Éè±¸
+            // ï¿½ï¿½Â¼ï¿½è±¸
             oWebVideoCtrl.I_Login(oLiveView.szIP, oLiveView.iProtocol, oLiveView.szPort, oLiveView.szUsername, oLiveView.szPassword, {
                 success: function (xmlDoc) {
-                    // ¿ªÊ¼Ô¤ÀÀ
+                    // ï¿½ï¿½Ê¼Ô¤ï¿½ï¿½
                     var szDeviceIdentify = oLiveView.szIP + "_" + oLiveView.szPort;
                     setTimeout(function () {
                         oWebVideoCtrl.I_StartRealPlay(oLiveView.szIP, {

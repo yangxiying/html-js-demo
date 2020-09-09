@@ -18,14 +18,17 @@ const menujson = [{
 },{
   name: 'basic3',
   meta: {
-    title: '基本3',
+    title: 'vant',
     icon: 'fa fa-camera-retro'
   },
   sub: []
 }];
 
-let addSubMenuData = function (name, title, path,parentIndex) {
+let addSubMenuData = function (name, title, path,parentIndex,pathindex) {
 
+  if(pathindex){
+    
+  }
   let subjsont = {
     name: name,
     meta: {
@@ -61,6 +64,22 @@ addSubMenuData('gojsdemo-1', 'gojs的使用-鼠标移入移出事件', './views/
 
 addSubMenuData('cartlist-1', 'gcartlist-1', './views/cartlist',1)
 addSubMenuData('elPicUpload-1', 'elPicUpload-1', './views/elUploadPic',1)
+
+addSubMenuData('nutSwiper-1', 'nutSwiper-1', './views/cartlist/swiper-nut',1)
+addSubMenuData('conciseSwiper-1/1', 'conciseSwiper-1', './views/cartlist/swiper3',1)
+addSubMenuData('conciseSwiper-2/2', 'conciseSwiper-2', './views/cartlist/swiper3',1)
+addSubMenuData('Swiper-1', 'Swiper-1', './views/cartlist/swiper',1)
+
+
+addSubMenuData('vant-layout-1', 'vant-layout-1', './views/vantDemo/vantLayoutDemo',2)
+addSubMenuData('vant-swiper-1', 'vant-swiper-1', './views/vantDemo/vantSwiperDemo',2)
+addSubMenuData('vant-grid-1', 'vant-grid-1', './views/vantDemo/vantGridDemo',2)
+
+
+addSubMenuData('img-1', 'img-1', './views/imgs/imgReqrie',2)
+addSubMenuData('img-Cropper-1', 'img--Cropper1', './views/imgs/imgJC',2)
+
+
 
 
 export default menujson;

@@ -12,8 +12,10 @@ module.exports = {
   lintOnSave: false,
 
   publicPath: process.env.NODE_ENV === "production" ? "./" : "./",
+
   // 在npm run build 或 yarn build 时 ，生成文件的目录名称（要和baseUrl的生产环境路径一致）（默认dist）
   outputDir: 'dist',
+
   // 用于放置生成的静态资源 (js、css、img、fonts) 的；（项目打包之后，静态资源会放在这个文件夹下）
   assetsDir: 'static',
 
@@ -25,6 +27,13 @@ module.exports = {
     host: '0.0.0.0',
     port: '8080',
     proxy: {
+      ['/picww/']: {
+        target: `http://192.168.3.200:8089/`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + '/picww/']: ''
+        }
+      },
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       ['/vedio_1/']: {
         target: `http://yf.ugc.v.cztv.com/`,
@@ -72,6 +81,7 @@ module.exports = {
       }
     }
   },
+
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
@@ -103,6 +113,10 @@ module.exports = {
         return options
       })
       .end()
+
+    config.module
+    .rule('less').use('less-loader')
+    .loader('less-loader')
 
     config
       .when(process.env.NODE_ENV !== 'development',
@@ -148,11 +162,10 @@ module.exports = {
       )
   },
 
-
   configureWebpack: config => {
 
     config.module.rules.push({
-      test: /\.swf$/,
+      test: /\.(swf|png|jpe?g|gif|JPG|PNG|svg)(\?.*)?$/,
       use: [{
         loader: 'url-loader',
         options: {
@@ -162,4 +175,11 @@ module.exports = {
       }]
     })
   },
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: []
+    }
+  }
 }

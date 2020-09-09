@@ -24,6 +24,9 @@ Vue.component('v-chart', ECharts)
 // import VuePIXI from 'vue-pixi'
 // Vue.use(VuePIXI)
 
+import Print from 'vue-print-nb'
+Vue.use(Print);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

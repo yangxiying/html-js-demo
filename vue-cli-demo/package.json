@@ -23,6 +23,7 @@
     "vue-echarts": "^5.0.0-beta.0",
     "vue-pdf": "^4.0.8",
     "vue-pixi": "^0.1.1",
+    "vue-print-nb": "^1.5.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

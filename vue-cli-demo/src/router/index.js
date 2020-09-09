@@ -13,6 +13,8 @@ import threejs3 from '@/components/threejsdemo/threejs3.vue'
 import elTable from '@/components/elTable.vue'
 import gojsdemo1 from '@/components/gojsdemo/gojsdemo1'
 
+import printdemo from '@/components/print/print-demo'
+
 Vue.use(Router)
 
 export default new Router({
@@ -64,6 +66,12 @@ export default new Router({
       path: '/gojsdemo1',
       name: 'gojsdemo1',
       component: gojsdemo1
+    }
+    ,
+    {
+      path: '/printdemo',
+      name: 'printdemo',
+      component: printdemo
     }
   ]
 })

@@ -34,7 +34,8 @@
          * 
          **/
         //gateway网关的地址
-        var host = "http://127.0.0.1:10001";
+        // var host = "http://127.0.0.1:10001";
+        var host = "http://jifen.xiaomy.net/prod-api";
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
             document.getElementById('disconnect').disabled = !connected;
@@ -45,7 +46,7 @@
         //https://stomp-js.github.io/stomp-websocket/codo/class/Client.html
         function connect() {
             //地址+端点路径，构建websocket链接地址,注意，对应config配置里的addEndpoint
-            var socket = new SockJS(host + '/myUrl' + '?token=4567');
+            var socket = new SockJS(host + '/myUrl' + '?cookie=4567');
             stompClient = Stomp.over(socket);
             var headers = {};
             stompClient.connect(headers, function (frame) {
@@ -72,10 +73,10 @@
 
 
                 //没连接上会一直重连，设置延迟避免请求过多 
-                setTimeout(function () {
-                    connect();
-                    lockReconnect = false;
-                }, 2000);
+                // setTimeout(function () {
+                //     connect();
+                //     lockReconnect = false;
+                // }, 2000);
 
             });
         }

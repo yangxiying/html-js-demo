@@ -12,6 +12,7 @@
     </p>
     <p>
       <router-link to="/elTab">elTab</router-link> 
+      <router-link to="/printdemo">printdemo</router-link> 
     </p>
     <p> 
       <router-link to="/gojsdemo1">gojsdemo1</router-link>

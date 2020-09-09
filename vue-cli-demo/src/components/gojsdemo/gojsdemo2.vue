@@ -666,7 +666,7 @@ export default {
         go.Adornment,
         "Auto",
         GO(go.Shape, {
-          fill: 'red',
+          fill: null,
           stroke: "deepskyblue",
           strokeWidth: 1,
           strokeDashArray: [4, 2],
@@ -829,7 +829,6 @@ export default {
           "Spot",
           {
             contextMenu: nodeMenu,
-            
             // here the second argument is this object, which is this Node
             // doubleClick: function(e, node) {
             //   alert("doubleClick==node.data.key:::::::::::" + node.data.key);
@@ -862,20 +861,6 @@ export default {
           },
           new go.Binding("angle").makeTwoWay(), //偏移角度,旋转的角度
           { stretch: go.GraphObject.Fill },
-          {
-            mouseEnter: function(e, obj) {
-                  obj.strokeWidth = 4;
-                  obj.stroke = "dodgerblue";
-                  obj.fill="green";
-                  console.info("111");
-                },
-                mouseLeave: function(e, obj) {
-                  obj.strokeWidth = 2;
-                  obj.stroke = "gray";
-                  obj.fill=null;
-                  console.info("22");
-                }
-          },
           GO(
             go.Panel,
             "Auto",
@@ -883,7 +868,6 @@ export default {
             // new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(
             //   go.Size.stringify
             // ),
-            // {fill:'red'},
             { stretch: go.GraphObject.Fill },
             // GO(
             //   go.Shape,
@@ -926,11 +910,9 @@ export default {
             GO(
               go.Panel,
               "Table",
-              // {fill:'red'},
               { stretch: go.GraphObject.Fill }, //raphObject.None, GraphObject.Fill, GraphObject.Horizontal, or GraphObject.Vertical. The default value is GraphObject.Default,
               GO(
                 go.TextBlock,
-                // {fill:'red'},
                 {
                   row: 0,
                   alignment: go.Spot.TopCenter,
@@ -1003,19 +985,14 @@ export default {
               //   mouseLeave: function(e, node) {
               //     showSmallPorts(node, false);
               //   }
-                mouseEnter: function(e, obj) {
-                  obj.strokeWidth = 4;
-                  obj.stroke = "dodgerblue";
-                  obj.fill="green";
-                  console.info("ssss");
-                  nodeSelectionAdornmentTemplate
-                },
-                mouseLeave: function(e, obj) {
-                  obj.strokeWidth = 2;
-                  obj.stroke = "gray";
-                  obj.fill=null;
-                  console.info("hhhhh");
-                }
+              //   mouseEnter: function(e, obj) {
+              //     obj.strokeWidth = 4;
+              //     obj.stroke = "dodgerblue";
+              //   },
+              //   mouseLeave: function(e, obj) {
+              //     obj.strokeWidth = 2;
+              //     obj.stroke = "gray";
+              //   }
               //   mouseEnter: function(e, node) {
               //     nodeContextMenu.adornedObject = node;
               //     nodeContextMenu.mouseLeave = function(ev, cm) {
@@ -1074,9 +1051,7 @@ export default {
         "FreehandDrawing-2",
         GO(
           go.Node,
-          // "Spot",
-          { reshapable: true,
-          },
+          { reshapable: true }, // GeometryReshapingTool assumes nonexistent Part.reshapeObjectName would be "SHAPE"
           new go.Binding("location", "loc", go.Point.parse).makeTwoWay(
             go.Point.stringify
           ),
@@ -1086,30 +1061,10 @@ export default {
             //选中时改变样式
             selectionAdornmentTemplate: nodeSelectionAdornmentTemplate,
           },
-          // { scale: 2 },
-          
-          GO(go.Shape,
-              {
-                name: "SHAPE",
-                fill: "transparent", //lightgray//transparent
-                strokeWidth: 0.5,
-                // selectionAdornmentTemplate: nodeSelectionAdornmentTemplate,
-                geometryString:
-                  "F M0 30 L6 11 L22 0 L46 9 L54 26 L50 43 L29 56 L29 56 L29 56 L6 48z",
-              },
-              new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(
-                go.Size.stringify
-              ),
-              new go.Binding("geometryString", "geo").makeTwoWay(),
-              new go.Binding("fill"),
-              new go.Binding("stroke"),
-              new go.Binding("strokeWidth")
-            ),
+
           GO(
             go.Panel,
             "Auto",
-            { isClipping: true },
-            // GO(go.Shape, "Circle", {   strokeWidth: 0 }),
             GO(
               go.Shape,
               {
@@ -1126,11 +1081,47 @@ export default {
               new go.Binding("fill"),
               new go.Binding("stroke"),
               new go.Binding("strokeWidth")
+            )
+          ),
+
+          GO(
+            go.Picture,
+            {
+              // desiredSize: new go.Size(800, 800),source: "static/123.png"
+              // desiredSize: new go.Size(100, 90),
+              source: "static/img/0022222.png",
+              imageStretch: go.GraphObject.Fill, // GraphObject.Fill, GraphObject.Uniform, GraphObject.UniformToFill, and GraphObject.None. The default is GraphObject.Fill.
+              // flip: go.GraphObject.FlipBoth,
+              // width: 580, height: 580
+            },
+            new go.Binding("source", "pickey")
+          ),
+          GO(
+            go.Panel,
+            "Table",
+            GO(
+              go.TextBlock,
+              {
+                row: 0,
+                alignment: go.Spot.LeftCenter,
+                font: "16px Roboto, sans-serif",
+                stroke: "rgba(0, 0, 0, .87)",
+                maxSize: new go.Size(160, NaN),
+                editable: true,
+              },
+              new go.Binding("text", "name")
             ),
-            // GO(go.Picture, "static/img/0022222.png", {
-            //   width: 55,
-            //   height: 55,
-            // })
+            GO(
+              go.TextBlock,
+              textStyle("title"),
+              {
+                row: 1,
+                alignment: go.Spot.Center,
+                maxSize: new go.Size(160, NaN),
+                editable: true,
+              },
+              new go.Binding("text", "title")
+            )
           )
         )
       );

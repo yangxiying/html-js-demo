@@ -68,8 +68,8 @@
     },
     methods: {
       handleOpen (key, keyPath) {
-        debugger;
-        console.log(key, keyPath)
+        // debugger;
+        // console.log(key, keyPath)
       },
       handleClose (key, keyPath) {
         // console.log(key, keyPath)

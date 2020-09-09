@@ -23,10 +23,10 @@
     },
     watch: {
       '$route' (to, from) {
-        debugger;
-        console.log(to, from)
-        log('to', to)
-        log('from', from)
+        // debugger;
+        // console.log(to, from)
+        // log('to', to)
+        // log('from', from)
 
         this.addCachedView(to)
       }
