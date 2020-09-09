@@ -13,6 +13,7 @@
     "element-ui": "^2.13.2",
     "gojs": "^2.1.23",
     "hls.js": "^0.14.8",
+    "image-conversion": "^2.1.1",
     "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "video.js": "^7.8.4",

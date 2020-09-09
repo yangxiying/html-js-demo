@@ -25,6 +25,13 @@ module.exports = {
     host: '0.0.0.0',
     port: '8080',
     proxy: {
+      ['/picww/']: {
+        target: `http://192.168.3.200:8089/`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + '/picww/']: ''
+        }
+      },
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       ['/vedio_1/']: {
         target: `http://yf.ugc.v.cztv.com/`,
