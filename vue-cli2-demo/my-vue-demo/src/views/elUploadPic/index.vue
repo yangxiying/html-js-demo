@@ -102,10 +102,7 @@ export default {
 
 
       return new Promise((resolve, reject) => {
-<<<<<<< HEAD
         debugger
-=======
->>>>>>> f24bdcec7322c84938bdabe5d6561ce17f7f1572
         let isLt2M = file.size / 1024 / 1024 < 2 // 判定图片大小是否小于2MB
         console.info('file.size',isLt2M)
         if (isLt2M) {
@@ -113,11 +110,7 @@ export default {
         }
         // console.info("ssssss")
         console.log(file) // 压缩到400KB,这里的400就是要压缩的大小,可自定义
-<<<<<<< HEAD
         imageConversion.compressAccurately(file, 200).then(res => { // console.log(res)
-=======
-        imageConversion.compressAccurately(file, 400).then(res => { // console.log(res)
->>>>>>> f24bdcec7322c84938bdabe5d6561ce17f7f1572
         debugger
         console.log('res')
         console.log(res)
